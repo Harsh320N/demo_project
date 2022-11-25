@@ -1,6 +1,7 @@
 import 'package:demo_project/common/model/data_model.dart';
 import 'package:demo_project/common/widget/decoration.dart';
-import 'package:demo_project/common/widget/image_widget.dart';
+import 'package:demo_project/common/widget/padding_margin.dart';
+import 'package:demo_project/common/widget/property_card.dart';
 import 'package:demo_project/common/widget/text_styles.dart';
 import 'package:demo_project/network/data.dart';
 import 'package:flutter/material.dart';
@@ -15,50 +16,51 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-
   List<Property> property = [];
   PropertyModel? propertyModel;
+
   @override
   void initState() {
-    propertyModel = PropertyModel.fromJson(data1);
+    propertyModel = PropertyModel.fromJson(data);
     property = propertyModel!.data!.properties!;
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
-    print("PROPERTY DATA ====== $propertyModel");
     Screen.setScreenSize(context);
     return Scaffold(
       backgroundColor: white,
       body: SafeArea(
         child: Center(
-          child: Container(
-            height: Screen.screenHeight * 0.95,
-            width: Screen.screenWidth * 0.95,
-            decoration: circularBoxDecoration(
-              containerColor: Colors.indigo,
-              circularRadius: 20.0,
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(20.0),
+            child: SizedBox(
+              height: Screen.screenHeight * 0.9,
+              width: Screen.screenWidth * 0.9,
+              child: PageView.builder(
+                itemCount: property.length,
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (context, index) => PropertyCard(
+                  addressArea: property[index].addressArea,
+                  bathrooms: property[index].bathrooms,
+                  bedrooms: property[index].bathrooms,
+                  depositAmount: property[index].depositAmount,
+                  nearestLocation: property[index].nearestLocation,
+                  status: property[index].status,
+                  propertyImage: property[index].propertyImages![0].path,
+                  profileImage: property[index].user!.profileImage,
+                  nearestLocationTime: property[index].nearestLocationTime,
+                  description: property[index].description,
+                  location: property[index].addressStreetName,
+                  keyFeature: property[index].keyFeatures,
+                  propertyImageElement: property[index].propertyImages,
+                ),
+              ),
             ),
-            child: labels(text: property[0].addressArea),
           ),
         ),
       ),
-      // body: Column(
-      //   children: [
-      //     Container(
-      //       height: Screen.screenHeight,
-      //       width: Screen.screenWidth,
-      //       decoration: circularBoxDecoration(
-      //         decorationImage: DecorationImage(
-      //           image: Images.instance.networkImageProvider(
-      //             data[0]['property_images'][0]['path'],
-      //           ),
-      //           fit: BoxFit.cover,
-      //         ),
-      //       ),
-      //     ),
-      //   ],
-      // ),
     );
   }
 }

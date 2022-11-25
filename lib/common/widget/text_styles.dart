@@ -55,3 +55,22 @@ TextStyle defaultTextStyle({
       decorationColor: decorationColor,
       decorationThickness: 2.0,
     );
+
+Widget heading(
+  String text, {
+  double size = 13.0,
+}) =>
+    labels(
+      text: text,
+      fontWeight: FontWeight.w700,
+      size: size,
+    );
+
+Widget subText(
+  String text,
+) =>
+    labels(
+      text: text,
+      size: 11.0,
+      color: greyShade,
+    );
