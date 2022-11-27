@@ -1,8 +1,7 @@
-import 'dart:async';
-
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:demo_project/common/model/data_model.dart';
 import 'package:demo_project/common/widget/decoration.dart';
+import 'package:demo_project/common/widget/google_map_widget.dart';
 import 'package:demo_project/common/widget/icon_widget.dart';
 import 'package:demo_project/common/widget/image_widget.dart';
 import 'package:demo_project/common/widget/padding_margin.dart';
@@ -10,7 +9,6 @@ import 'package:demo_project/common/widget/spaces.dart';
 import 'package:demo_project/common/widget/text_styles.dart';
 import 'package:demo_project/utils/utils_export.dart';
 import 'package:flutter/material.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class PropertyCard extends StatefulWidget {
   final String propertyImage;
@@ -49,18 +47,7 @@ class PropertyCard extends StatefulWidget {
 }
 
 class _PropertyCardState extends State<PropertyCard> {
-  Completer<GoogleMapController> _controller = Completer();
 
-  static final CameraPosition _kGooglePlex = const CameraPosition(
-    target: LatLng(37.42796133580664, -122.085749655962),
-    zoom: 14.4746,
-  );
-
-  static final CameraPosition _kLake = const CameraPosition(
-      bearing: 192.8334901395799,
-      target: LatLng(37.43296265331129, -122.08832357078792),
-      tilt: 59.440717697143555,
-      zoom: 19.151926040649414);
   @override
   Widget build(BuildContext context) {
     CarouselController controller = CarouselController();
@@ -222,18 +209,14 @@ class _PropertyCardState extends State<PropertyCard> {
                 heading("Location"),
                 subText(widget.location),
                 verticalSpace(15.0),
-                GestureDetector(
-                  onTap: () {
-                    Navigator.pushNamed(context, mapScreen);
-                  },
-                  child: SizedBox(
-                    height: 200.0,
-                    width: double.infinity,
-                    child: GoogleMap(
-                      mapType: MapType.hybrid,
-                      initialCameraPosition: _kGooglePlex,
-                      onMapCreated: (GoogleMapController controller) {
-                        _controller.complete(controller);
+                SizedBox(
+                  height: 200.0,
+                  width: double.infinity,
+                  child: Hero(
+                    tag: "map",
+                    child: GoogleMapWidget(
+                      onTap: (value) {
+                        Navigator.pushNamed(context, mapScreen);
                       },
                     ),
                   ),

@@ -232,6 +232,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.1.1"
+  swiping_card_deck:
+    dependency: "direct main"
+    description:
+      name: swiping_card_deck
+      sha256: d672ee8985961d11c942cca26bf618eec641bc37b4dd70f3c2ef4bbe17843171
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.2.0"
   term_glyph:
     dependency: transitive
     description:
