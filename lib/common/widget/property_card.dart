@@ -1,4 +1,3 @@
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:demo_project/common/model/data_model.dart';
 import 'package:demo_project/common/widget/decoration.dart';
 import 'package:demo_project/common/widget/google_map_widget.dart';
@@ -50,8 +49,6 @@ class _PropertyCardState extends State<PropertyCard> {
 
   @override
   Widget build(BuildContext context) {
-    CarouselController controller = CarouselController();
-    int current = 0;
     return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -197,173 +194,104 @@ class _PropertyCardState extends State<PropertyCard> {
               ],
             ),
           ),
-          Padding(
-            padding: paddingSymmetric(horizontal: 10.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                verticalSpace(20.0),
-                heading("Description"),
-                subText(widget.description),
-                verticalSpace(20.0),
-                heading("Location"),
-                subText(widget.location),
-                verticalSpace(15.0),
-                SizedBox(
-                  height: 200.0,
-                  width: double.infinity,
-                  child: Hero(
-                    tag: "map",
-                    child: GoogleMapWidget(
-                      onTap: (value) {
-                        Navigator.pushNamed(context, mapScreen);
-                      },
-                    ),
-                  ),
-                ),
-                verticalSpace(20.0),
-                heading("Key features & amenities"),
-                verticalSpace(10.0),
-                SizedBox(
-                  height: 130.0,
-                  child: ListView.builder(
-                    itemCount: widget.keyFeature!.length,
-                    shrinkWrap: true,
-                    scrollDirection: Axis.horizontal,
-                    itemBuilder: (context, index) => Padding(
-                      padding: paddingOnly(
-                        left: index == 0 ? 0 : 15.0,
-                      ),
-                      child: _featuresBox(
-                        icon: widget.keyFeature![index].colorIconUrl,
-                        name: widget.keyFeature![index].name,
-                      ),
-                    ),
-                  ),
-                ),
-                verticalSpace(20.0),
-                heading("Gallery"),
-                verticalSpace(10.0),
-                // CarouselSlider.builder(
-                //   carouselController: controller,
-                //   itemCount: widget.propertyImageElement!.length,
-                //   options: CarouselOptions(
-                //       enableInfiniteScroll: false,
-                //       autoPlay: false,
-                //       enlargeCenterPage: false,
-                //       viewportFraction: 1.0,
-                //       aspectRatio: 1.8,
-                //       initialPage: 0,
-                //       onPageChanged: (index, reason) {
-                //         setState(() {
-                //           current = index;
-                //         });
-                //       }),
-                //   itemBuilder: (BuildContext context, int itemIndex,
-                //           int pageViewIndex) =>
-                //       Container(
-                //     decoration: circularBoxDecoration(
-                //       circularRadius: 20.0,
-                //       decorationImage: DecorationImage(
-                //         image: Images.instance.networkImageProvider(
-                //             widget.propertyImageElement![itemIndex].path),
-                //         fit: BoxFit.cover,
-                //       ),
-                //     ),
-                //     child: Row(
-                //       mainAxisAlignment: MainAxisAlignment.center,
-                //       children: widget.propertyImageElement!
-                //           .asMap()
-                //           .entries
-                //           .map((entry) {
-                //         return Container(
-                //           width: 12.0,
-                //           height: 12.0,
-                //           margin: const EdgeInsets.symmetric(
-                //               vertical: 8.0, horizontal: 4.0),
-                //           decoration: BoxDecoration(
-                //               shape: BoxShape.circle,
-                //               color: (Theme.of(context).brightness == Brightness.dark
-                //                       ? Colors.white
-                //                       : Colors.black)
-                //                   .withOpacity(
-                //                       current == entry.key ? 0.9 : 0.4)),
-                //         );
-                //       }).toList(),
-                //     ),
-                //   ),
-                // ),
-                SizedBox(
-                  height: 200.0,
-                  child: PageView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: widget.propertyImageElement!.length,
-                    onPageChanged: (value) {
-                      setState(() {
-                        current = value;
-                      });
-                    },
-                    itemBuilder: (context, index) => Container(
-                      decoration: circularBoxDecoration(
-                        circularRadius: 20.0,
-                        decorationImage: DecorationImage(
-                          image: Images.instance.networkImageProvider(
-                              widget.propertyImageElement![index].path),
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                // Row(
-                //   mainAxisAlignment: MainAxisAlignment.center,
-                //   children: indicators(widget.propertyImageElement!.length, current),
-                // ),
-                verticalSpace(20.0),
-                heading("Basic info"),
-                verticalSpace(10.0),
-                Table(
-                  children: [
-                    _table(
-                      clOne: "Listing Type",
-                      clTwo: "Room",
-                    ),
-                    _table(
-                      clOne: "Property Type",
-                      clTwo: "Flat",
-                    ),
-                    _table(
-                      clOne: "Room Type",
-                      clTwo: "Single Room",
-                    ),
-                    _table(
-                      clOne: "Move in date",
-                      clTwo: "Available now",
-                    ),
-                    _table(
-                      clOne: "Length of stay",
-                      clTwo: "Short let",
-                    ),
-                    _table(
-                      clOne: "Type",
-                      clTwo: "Furnished",
-                    ),
-                    _table(
-                      clOne: "For Student",
-                      clTwo: "Yes",
-                    ),
-                    _table(
-                      clOne: "Deposit amount",
-                      clTwo: widget.depositAmount.toString(),
-                    ),
-                    _table(
-                      clOne: "Current Flatmates",
-                      clTwo: "Room",
-                    ),
-                  ],
-                ),
-              ],
+          verticalSpace(20.0),
+          heading("Description"),
+          subText(widget.description),
+          verticalSpace(20.0),
+          heading("Location"),
+          subText(widget.location),
+          verticalSpace(15.0),
+           SizedBox(
+            height: 200.0,
+            width: Screen.screenWidth,
+            child: GoogleMapWidget(
+              onTap: (value) {
+                Navigator.pushNamed(context, mapScreen);
+              },
             ),
+          ),
+          verticalSpace(20.0),
+          heading("Key features & amenities"),
+          verticalSpace(10.0),
+          SizedBox(
+            height: 130.0,
+            child: ListView.builder(
+              itemCount: widget.keyFeature!.length,
+              shrinkWrap: true,
+              scrollDirection: Axis.horizontal,
+              itemBuilder: (context, index) => Padding(
+                padding: paddingOnly(
+                  left: index == 0 ? 0 : 15.0,
+                ),
+                child: _featuresBox(
+                  icon: widget.keyFeature![index].colorIconUrl,
+                  name: widget.keyFeature![index].name,
+                ),
+              ),
+            ),
+          ),
+          verticalSpace(20.0),
+          heading("Gallery"),
+          verticalSpace(10.0),
+          SizedBox(
+            height: 200.0,
+            child: PageView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: widget.propertyImageElement!.length,
+              itemBuilder: (context, index) => Container(
+                decoration: circularBoxDecoration(
+                  circularRadius: 20.0,
+                  decorationImage: DecorationImage(
+                    image: Images.instance.networkImageProvider(
+                        widget.propertyImageElement![index].path),
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
+            ),
+          ),
+          verticalSpace(20.0),
+          heading("Basic info"),
+          verticalSpace(10.0),
+          Table(
+            children: [
+              _table(
+                clOne: "Listing Type",
+                clTwo: "Room",
+              ),
+              _table(
+                clOne: "Property Type",
+                clTwo: "Flat",
+              ),
+              _table(
+                clOne: "Room Type",
+                clTwo: "Single Room",
+              ),
+              _table(
+                clOne: "Move in date",
+                clTwo: "Available now",
+              ),
+              _table(
+                clOne: "Length of stay",
+                clTwo: "Short let",
+              ),
+              _table(
+                clOne: "Type",
+                clTwo: "Furnished",
+              ),
+              _table(
+                clOne: "For Student",
+                clTwo: "Yes",
+              ),
+              _table(
+                clOne: "Deposit amount",
+                clTwo: widget.depositAmount.toString(),
+              ),
+              _table(
+                clOne: "Current Flatmates",
+                clTwo: "Room",
+              ),
+            ],
           ),
         ],
       ),

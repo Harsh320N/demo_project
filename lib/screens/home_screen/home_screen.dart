@@ -34,41 +34,70 @@ class _HomeScreenState extends State<HomeScreen> {
       backgroundColor: white,
       body: SafeArea(
         child: Center(
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(20.0),
-            child: SizedBox(
-              height: Screen.screenHeight * 0.9,
-              width: Screen.screenWidth * 0.9,
-              child: SwipingCardDeck(
-                cardDeck: [],
-                onDeckEmpty: () => debugPrint("Card deck empty"),
-                onLeftSwipe: (Card card) => debugPrint("Swiped left!"),
-                onRightSwipe: (Card card) => debugPrint("Swiped right!"),
-                swipeThreshold: MediaQuery.of(context).size.width / 4,
-                minimumVelocity: 1000,
-                cardWidth: 200,
-                rotationFactor: 0.8 / 3.14,
-                swipeAnimationDuration: const Duration(milliseconds: 500),
+          child: Container(
+            height: Screen.screenHeight * 0.9,
+            width: Screen.screenWidth * 0.9,
+            decoration: circularBoxDecoration(
+              circularRadius: 20.0,
+            ),
+            // child: ClipRRect(
+            //   borderRadius: BorderRadius.circular(20.0),
+            //   child: SingleChildScrollView(
+            //     child: SwipingCardDeck(
+            //       cardDeck: [
+            //         for(int index=0; index < property.length; index++)
+            //           Card(
+            //             margin: EdgeInsets.zero,
+            //             shape: RoundedRectangleBorder(
+            //               borderRadius: BorderRadius.circular(20.0),
+            //             ),
+            //             child: PropertyCard(
+            //               addressArea: property[index].addressArea,
+            //               bathrooms: property[index].bathrooms,
+            //               bedrooms: property[index].bathrooms,
+            //               depositAmount: property[index].depositAmount,
+            //               nearestLocation: property[index].nearestLocation,
+            //               status: property[index].status,
+            //               propertyImage: property[index].propertyImages![0].path,
+            //               profileImage: property[index].user!.profileImage,
+            //               nearestLocationTime: property[index].nearestLocationTime,
+            //               description: property[index].description,
+            //               location: property[index].addressStreetName,
+            //               keyFeature: property[index].keyFeatures,
+            //               propertyImageElement: property[index].propertyImages,
+            //             ),
+            //           ),
+            //       ],
+            //       onDeckEmpty: () => debugPrint("Card deck empty"),
+            //       onLeftSwipe: (Card card) => debugPrint("Swiped left!"),
+            //       onRightSwipe: (Card card) => debugPrint("Swiped right!"),
+            //       swipeThreshold: MediaQuery.of(context).size.width / 4,
+            //       minimumVelocity: 1000,
+            //       cardWidth: 200,
+            //       rotationFactor: 0.8 / 3.14,
+            //       swipeAnimationDuration: const Duration(milliseconds: 0),
+            //     ),
+            //   ),
+            // ),
+            child: PageView.builder(
+              itemCount: property.length,
+              scrollDirection: Axis.horizontal,
+              itemBuilder: (context, index) =>
+              PropertyCard(
+                addressArea: property[index].addressArea,
+                bathrooms: property[index].bathrooms,
+                bedrooms: property[index].bathrooms,
+                depositAmount: property[index].depositAmount,
+                nearestLocation: property[index].nearestLocation,
+                status: property[index].status,
+                propertyImage: property[index].propertyImages![0].path,
+                profileImage: property[index].user!.profileImage,
+                nearestLocationTime: property[index].nearestLocationTime,
+                description: property[index].description,
+                location: property[index].addressStreetName,
+                keyFeature: property[index].keyFeatures,
+                propertyImageElement: property[index].propertyImages,
               ),
-              // child: PageView.builder(
-              //   itemCount: property.length,
-              //   scrollDirection: Axis.horizontal,
-              //   itemBuilder: (context, index) => PropertyCard(
-              //     addressArea: property[index].addressArea,
-              //     bathrooms: property[index].bathrooms,
-              //     bedrooms: property[index].bathrooms,
-              //     depositAmount: property[index].depositAmount,
-              //     nearestLocation: property[index].nearestLocation,
-              //     status: property[index].status,
-              //     propertyImage: property[index].propertyImages![0].path,
-              //     profileImage: property[index].user!.profileImage,
-              //     nearestLocationTime: property[index].nearestLocationTime,
-              //     description: property[index].description,
-              //     location: property[index].addressStreetName,
-              //     keyFeature: property[index].keyFeatures,
-              //     propertyImageElement: property[index].propertyImages,
-              //   ),
-              // ),
             ),
           ),
         ),

@@ -42,7 +42,7 @@ class GoogleMapWidgetState extends State<GoogleMapWidget> {
     return GoogleMap(
       zoomControlsEnabled: false,
       onTap: widget.onTap,
-      mapType: MapType.hybrid,
+      mapType: MapType.normal,
       initialCameraPosition: _kGooglePlex,
       onMapCreated: (GoogleMapController controller) {
         _controller.complete(controller);
