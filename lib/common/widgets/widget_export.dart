@@ -1,3 +1,4 @@
+export 'package:user_listing_with_signup_demo/common/widgets/app_bars.dart';
 export 'package:user_listing_with_signup_demo/common/widgets/app_functions.dart';
 export 'package:user_listing_with_signup_demo/common/widgets/circle_avatar.dart';
 export 'package:user_listing_with_signup_demo/common/widgets/decoration.dart';
@@ -10,3 +11,5 @@ export 'package:user_listing_with_signup_demo/common/widgets/padding_margin.dart
 export 'package:user_listing_with_signup_demo/common/widgets/spaces.dart';
 export 'package:user_listing_with_signup_demo/common/widgets/text_styles.dart';
 export 'package:user_listing_with_signup_demo/common/widgets/error_snack.dart';
+export 'package:user_listing_with_signup_demo/common/widgets/fields.dart';
+export 'package:user_listing_with_signup_demo/common/widgets/gradient_border.dart';

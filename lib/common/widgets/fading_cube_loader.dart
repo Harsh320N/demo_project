@@ -1,6 +1,7 @@
 import 'dart:math' as math show sin, pi;
 
 import 'package:flutter/material.dart';
+import 'package:user_listing_with_signup_demo/utils/utils_export.dart';
 
 class DelayTween extends Tween<double> {
   DelayTween({double? begin, double? end, required this.delay})
@@ -25,8 +26,8 @@ class FadingCubeLoader extends StatefulWidget {
 
   const FadingCubeLoader({
     Key? key,
-    this.color,
-    this.size = 50.0,
+    this.color = primaryColor,
+    this.size = 30.0,
     this.itemBuilder,
     this.duration = const Duration(milliseconds: 2400),
     this.controller,

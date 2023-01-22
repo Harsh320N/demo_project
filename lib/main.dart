@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:user_listing_with_signup_demo/utils/utils_export.dart';
 
 main() {
+  WidgetsFlutterBinding.ensureInitialized();
   ///Portrait View
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
