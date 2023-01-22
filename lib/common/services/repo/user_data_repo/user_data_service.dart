@@ -23,7 +23,6 @@ class UserDataRepo {
       showLoader: false,
     );
     if (responseBody != null) {
-      print("RESPONSE AT SERVICE ------ $responseBody");
       return  List<UserListModel>.from(responseBody.map((x) => UserListModel.fromJson(x)));
     }
     return null;

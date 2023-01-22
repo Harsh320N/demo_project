@@ -128,8 +128,13 @@ class _SignupScreenState extends State<SignupScreen> {
                       if (!first &&
                           nameValidate.isEmpty &&
                           emailValidate.isEmpty) {
-                        disposeKeyboard();
-                        Get.toNamed(homeScreen);
+                        signupController.signUp(
+                          context,
+                          status: "Active",
+                          name: signupController.nameController.text,
+                          email: signupController.emailController.text,
+                          gender: genderSelectionController.selected,
+                        );
                       } else {
                         SignUpBloc.getName(
                             signupController.nameController.text);
