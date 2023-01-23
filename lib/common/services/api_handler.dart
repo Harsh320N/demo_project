@@ -130,6 +130,7 @@ class API {
             return res;
           }  else if (response.statusCode == 201) {
             print("201");
+            return res;
           } else if (response.statusCode == 204) {
             print("204");
           }else if (response.statusCode == 304) {
