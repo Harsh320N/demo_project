@@ -11,7 +11,7 @@ class SignUpRepo {
     String gender = "",
     String status = "",
   }) async {
-    var responseBody = await API.signupHandler(
+    var responseBody = await API.apiHandler(
       url: ApiUtils.userDataUrl,
       body: jsonEncode({
         "name": name,
